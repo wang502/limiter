@@ -58,6 +58,7 @@ public class RedisPool {
                     System.out.println(String.format("Failed to get a redis connection when creating redis pool, "  + "host: %s, port: %d", host, port));
         } finally {
             //pool.returnResource(jedis);
+            jedis.close();
         }
 
         return pool;

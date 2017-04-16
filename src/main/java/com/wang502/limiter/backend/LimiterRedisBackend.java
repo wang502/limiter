@@ -8,6 +8,7 @@ import org.apache.commons.configuration2.builder.fluent.Parameters;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.io.File;
 
@@ -24,6 +25,52 @@ public class LimiterRedisBackend {
 
     public RedisPool getRedisPool() {
         return redisPool;
+    }
+
+    //
+    // Sorted set methods
+    //
+    public Long addSortedSet(final String key, final double score, final String member) {
+        try {
+            Long resp = RedisUtils.ExecuteWithCallback(this.redisPool.getGeneralRedisPool(), new RedisCallback<Jedis, Long>() {
+                public Long apply(Jedis conn) {
+                    return conn.zadd(key, score, member);
+                }
+            });
+            return resp;
+
+        } catch (JedisConnectionException e) {
+            // retry
+            return addSortedSet(key, score, member);
+        }
+    }
+
+    public Long removeSortedSetByScore(final String key, final double start, final double end) {
+        try {
+            Long resp = RedisUtils.ExecuteWithCallback(this.redisPool.getGeneralRedisPool(), new RedisCallback<Jedis, Long>() {
+                public Long apply(Jedis conn) {
+                    return conn.zremrangeByScore(key, start, end);
+                }
+            });
+            return resp;
+        } catch (JedisConnectionException e) {
+            // retry
+            return removeSortedSetByScore(key, start, end);
+        }
+    }
+
+    public Long sortedSetSize(final String key) {
+        try {
+            Long resp = RedisUtils.ExecuteWithCallback(this.redisPool.getGeneralRedisPool(), new RedisCallback<Jedis, Long>() {
+                public Long apply(Jedis conn) {
+                    return conn.zcard(key);
+                }
+            });
+            return resp;
+        } catch (JedisConnectionException e) {
+            // retry
+            return sortedSetSize(key);
+        }
     }
 
     public static void main(String[] args){
