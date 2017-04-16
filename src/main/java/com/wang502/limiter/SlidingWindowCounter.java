@@ -11,24 +11,28 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-
 /**
  * Created by Xiaohui on 4/15/17.
  */
-public class SlidingWindowLog implements LimiterService {
+public class SlidingWindowCounter implements LimiterService {
 
     private LimiterRedisBackend redisBackend;
     private Configuration config;
     private String name;
 
-    public SlidingWindowLog(LimiterRedisBackend redisBackend, Configuration limiterConfig){
+    public SlidingWindowCounter(LimiterRedisBackend redisBackend, Configuration limiterConfig){
         this.redisBackend = redisBackend;
         this.config = limiterConfig;
-        this.name = "SlidingWindowLog";
+        this.name = "SlidingWindowCounter";
     }
 
     public boolean processRequest(String userKey, double timestamp) {
-        return this.redisBackend.slidingWindowLogMulti(userKey, timestamp, this.config);
+        String timeType = this.config.getString("TIMESTAMP_TYPE");
+        if (timeType.equals("minute")){
+            timestamp = (double) Math.round(timestamp/60);
+        }
+
+        return this.redisBackend.slidingWindowCounterMulti(userKey, timestamp, this.config);
     }
 
     public String getServiceName() {
@@ -55,7 +59,7 @@ public class SlidingWindowLog implements LimiterService {
         LimiterRedisBackend redisBackend = new LimiterRedisBackend(redisConfig, host, port);
 
         Parameters params2 = new Parameters();
-        File propertiesFile2 = new File("/Users/Xiaohui/Desktop/contribution/limiter/src/main/config/limiter.slidingwindowlog.properties");
+        File propertiesFile2 = new File("/Users/Xiaohui/Desktop/contribution/limiter/src/main/config/limiter.slidingwindowcounter.properties");
         FileBasedConfigurationBuilder<FileBasedConfiguration> builder2 =
                 new FileBasedConfigurationBuilder<FileBasedConfiguration>
                         (PropertiesConfiguration.class)
@@ -68,20 +72,23 @@ public class SlidingWindowLog implements LimiterService {
             // handle exception here
             System.out.println(cex);
         }
-        LimiterService service = new SlidingWindowLog(redisBackend, limiterConfig);
+        LimiterService limiterService = new SlidingWindowCounter(redisBackend, limiterConfig);
 
-        boolean ok1 = service.processRequest("0415", System.currentTimeMillis() / 1000L);
+        boolean ok1 = limiterService.processRequest("0416", System.currentTimeMillis()/1000L);
         TimeUnit.SECONDS.sleep(1);
-        boolean ok2 = service.processRequest("0415", System.currentTimeMillis() / 1000L);
+        boolean ok2 = limiterService.processRequest("0416", System.currentTimeMillis()/1000L);
         TimeUnit.SECONDS.sleep(1);
-        boolean ok3 = service.processRequest("0415", System.currentTimeMillis() / 1000L);
+        boolean ok3 = limiterService.processRequest("0416", System.currentTimeMillis()/1000L);
         TimeUnit.SECONDS.sleep(1);
-        boolean ok4 = service.processRequest("0415", System.currentTimeMillis() / 1000L);
+        boolean ok4 = limiterService.processRequest("0416", System.currentTimeMillis()/1000L);
         TimeUnit.SECONDS.sleep(1);
-        boolean ok5 = service.processRequest("0415", System.currentTimeMillis() / 1000L);
-        TimeUnit.SECONDS.sleep(1);
-        boolean ok6 = service.processRequest("0415", System.currentTimeMillis() / 1000L);
+        boolean ok5 = limiterService.processRequest("0416", System.currentTimeMillis()/1000L);
 
-        System.out.println(ok1 + " " + ok2 + " " + ok3 + " " + ok4 + " " + ok5 + " " + ok6);
+        System.out.println(ok1 + " " + ok2 + " " + ok3 + " " + ok4 + " " + ok5);
+
+
+        TimeUnit.SECONDS.sleep(limiterConfig.getInt("EXPIRE"));
+        boolean ok6 = limiterService.processRequest("0416", System.currentTimeMillis()/1000L);
+        System.out.println(ok6);
     }
 }

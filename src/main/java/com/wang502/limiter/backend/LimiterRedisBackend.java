@@ -29,9 +29,9 @@ public class LimiterRedisBackend {
         return redisPool;
     }
 
-    public boolean slidingWindowMulti(final String userKey, final double timestamp, Configuration config){
+    public boolean slidingWindowLogMulti(final String userKey, final double timestamp, Configuration config){
         try {
-            // time span in Unix of the limiter, 1 min, 1 hour etc
+            // limiter time span in seconds
             final double timespan = config.getDouble("TIME_SPAN");
             // limit of visits with a time span
             final double limit = config.getDouble("LIMIT");
@@ -55,7 +55,38 @@ public class LimiterRedisBackend {
             }
             return false;
         } catch (JedisConnectionException e) {
-            return slidingWindowMulti(userKey, timestamp, config);
+            // retry
+            return slidingWindowLogMulti(userKey, timestamp, config);
+        }
+    }
+
+    public boolean slidingWindowCounterMulti(final String userKey, final double timestamp, Configuration config){
+        try {
+            // limiter time span in seconds
+            final double duration = config.getDouble("EXPIRE");
+            // limit of visits with a time span
+            final double limit = config.getDouble("LIMIT");
+            final String field = String.valueOf(timestamp);
+
+            Long resp = RedisUtils.ExecuteWithCallback(this.redisPool.getGeneralRedisPool(), new RedisCallback<Jedis, Long>() {
+                public Long apply(Jedis conn) {
+                    Transaction t = conn.multi();
+                    t.hincrBy(userKey, field, 1);
+                    t.expire(userKey, (int) duration);
+                    Response<String> valResp = t.hget(userKey, field);
+
+                    t.exec();
+                    Long count = Long.parseLong(valResp.get());
+                    return count;
+                }
+            });
+
+            if (resp <= limit) {
+                return true;
+            }
+            return false;
+        } catch (JedisConnectionException e){
+            return slidingWindowCounterMulti(userKey, timestamp, config);
         }
     }
 
