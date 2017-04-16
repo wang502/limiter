@@ -19,8 +19,6 @@ public class RedisUtils {
         } catch (JedisConnectionException e) {
             gotJedisConnException = true;
             throw(e);
-        } finally {
-
         }
     }
 }

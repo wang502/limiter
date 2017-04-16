@@ -8,6 +8,8 @@ import org.apache.commons.configuration2.builder.fluent.Parameters;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.Response;
+import redis.clients.jedis.Transaction;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.io.File;
@@ -27,49 +29,33 @@ public class LimiterRedisBackend {
         return redisPool;
     }
 
-    //
-    // Sorted set methods
-    //
-    public Long addSortedSet(final String key, final double score, final String member) {
+    public boolean slidingWindowMulti(final String userKey, final double timestamp, Configuration config){
         try {
+            // time span in Unix of the limiter, 1 min, 1 hour etc
+            final double timespan = config.getDouble("TIME_SPAN");
+            // limit of visits with a time span
+            final double limit = config.getDouble("LIMIT");
+            final String member = String.valueOf(timestamp);
+
             Long resp = RedisUtils.ExecuteWithCallback(this.redisPool.getGeneralRedisPool(), new RedisCallback<Jedis, Long>() {
                 public Long apply(Jedis conn) {
-                    return conn.zadd(key, score, member);
+                    Transaction t = conn.multi();
+                    Response<Long> removeResp = t.zremrangeByScore(userKey, 0, timestamp - timespan);
+                    Response<Long> addResp = t.zadd(userKey, timestamp, member);
+                    Response<Long> sizeResp = t.zcard(userKey);
+
+                    t.exec();
+                    Long size = sizeResp.get();
+                    return size;
                 }
             });
-            return resp;
 
+            if (resp <= limit) {
+                return true;
+            }
+            return false;
         } catch (JedisConnectionException e) {
-            // retry
-            return addSortedSet(key, score, member);
-        }
-    }
-
-    public Long removeSortedSetByScore(final String key, final double start, final double end) {
-        try {
-            Long resp = RedisUtils.ExecuteWithCallback(this.redisPool.getGeneralRedisPool(), new RedisCallback<Jedis, Long>() {
-                public Long apply(Jedis conn) {
-                    return conn.zremrangeByScore(key, start, end);
-                }
-            });
-            return resp;
-        } catch (JedisConnectionException e) {
-            // retry
-            return removeSortedSetByScore(key, start, end);
-        }
-    }
-
-    public Long sortedSetSize(final String key) {
-        try {
-            Long resp = RedisUtils.ExecuteWithCallback(this.redisPool.getGeneralRedisPool(), new RedisCallback<Jedis, Long>() {
-                public Long apply(Jedis conn) {
-                    return conn.zcard(key);
-                }
-            });
-            return resp;
-        } catch (JedisConnectionException e) {
-            // retry
-            return sortedSetSize(key);
+            return slidingWindowMulti(userKey, timestamp, config);
         }
     }
 

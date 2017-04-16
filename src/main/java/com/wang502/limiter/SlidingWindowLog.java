@@ -28,23 +28,7 @@ public class SlidingWindowLog implements LimiterService {
     }
 
     public boolean processRequest(String userKey, double timestamp) {
-        // time span in Unix of the limiter, 1 min, 1 hour etc
-        double timespan = this.config.getDouble("TIME_SPAN");
-        System.out.println(timespan);
-        // limit of visits with a time span
-        double limit = config.getDouble("LIMIT");
-
-        String member = String.valueOf(timestamp);
-        Long addResp = this.redisBackend.addSortedSet(userKey, timestamp, member);
-        Long removeResp = this.redisBackend.removeSortedSetByScore(userKey, 0, timestamp - timespan);
-        System.out.println(removeResp);
-        Long size = this.redisBackend.sortedSetSize(userKey);
-
-        if (size <= limit) {
-            return true;
-        }
-
-        return false;
+        return this.redisBackend.slidingWindowMulti(userKey, timestamp, this.config);
     }
 
     public String getServiceName() {

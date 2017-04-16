@@ -2,14 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b5f0952-bb38-46af-b1ac-34eb3f6ee315" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/LimiterRedisBackend$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/LimiterRedisBackend$5.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wang502/limiter/SlidingWindowLog.class" afterPath="$PROJECT_DIR$/target/classes/com/wang502/limiter/SlidingWindowLog.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/LimiterRedisBackend$1.class" afterPath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/LimiterRedisBackend$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/LimiterRedisBackend$2.class" afterPath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/LimiterRedisBackend$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/LimiterRedisBackend$3.class" afterPath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/LimiterRedisBackend$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/LimiterRedisBackend.class" afterPath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/LimiterRedisBackend.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/RedisPool.class" afterPath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/RedisPool.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/RedisUtils.class" afterPath="$PROJECT_DIR$/target/classes/com/wang502/limiter/backend/RedisUtils.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/config/limiter.redis.properties" afterPath="$PROJECT_DIR$/src/main/config/limiter.redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wang502/limiter/SlidingWindowLog.java" afterPath="$PROJECT_DIR$/src/main/java/com/wang502/limiter/SlidingWindowLog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/LimiterRedisBackend.java" afterPath="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/LimiterRedisBackend.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisPool.java" afterPath="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisPool.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisUtils.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+              <caret line="9" column="10" lean-forward="false" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -40,17 +46,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/LimiterService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="limiter.redis.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/config/limiter.redis.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+              <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -59,12 +55,12 @@
       <file leaf-file-name="SlidingWindowLog.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/SlidingWindowLog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="104" column="5" lean-forward="true" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
+            <state relative-caret-position="143">
+              <caret line="46" column="53" lean-forward="false" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1772#1773#0" expanded="true" />
-                <element signature="e#1804#1805#0" expanded="true" />
+                <element signature="e#1174#1175#0" expanded="true" />
+                <element signature="e#1206#1207#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,8 +69,8 @@
       <file leaf-file-name="RedisPool.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisPool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="60" column="26" lean-forward="true" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
+            <state relative-caret-position="540">
+              <caret line="59" column="19" lean-forward="false" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#835#836#0" expanded="true" />
@@ -84,34 +80,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RedisUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisUtils.java">
+      <file leaf-file-name="LimiterRedisBackend.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/LimiterRedisBackend.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="825">
+              <caret line="59" column="5" lean-forward="false" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LimiterRedisBackend.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/LimiterRedisBackend.java">
+      <file leaf-file-name="RedisUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#892#893#0" expanded="true" />
-                <element signature="e#924#925#0" expanded="true" />
-                <element signature="e#1164#1336#0" expanded="true" />
-                <element signature="e#1335#1336#0" expanded="true" />
-                <element signature="e#1707#1888#0" expanded="true" />
-                <element signature="e#1887#1888#0" expanded="true" />
-                <element signature="e#2218#2376#0" expanded="true" />
-                <element signature="e#2375#2376#0" expanded="true" />
-                <element signature="e#3815#3969#0" expanded="true" />
-                <element signature="e#3968#3969#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="270">
+              <caret line="20" column="21" lean-forward="false" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -138,15 +124,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisCallback.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisUtils.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/LimiterService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wang502/limiter/LimiterService.java" />
         <option value="$PROJECT_DIR$/src/main/config/limiter.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/LimiterRedisBackend.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisPool.java" />
         <option value="$PROJECT_DIR$/src/main/config/limiter.redis.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisPool.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wang502/limiter/SlidingWindowLog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/LimiterRedisBackend.java" />
       </list>
     </option>
   </component>
@@ -601,43 +587,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/LimiterRedisBackend.java">
+    <entry file="file://$PROJECT_DIR$/src/main/config/limiter.redis.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#892#893#0" expanded="true" />
-            <element signature="e#924#925#0" expanded="true" />
-            <element signature="e#1164#1336#0" expanded="true" />
-            <element signature="e#1335#1336#0" expanded="true" />
-            <element signature="e#1707#1888#0" expanded="true" />
-            <element signature="e#1887#1888#0" expanded="true" />
-            <element signature="e#2218#2376#0" expanded="true" />
-            <element signature="e#2375#2376#0" expanded="true" />
-            <element signature="e#3815#3969#0" expanded="true" />
-            <element signature="e#3968#3969#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="15">
+          <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+          <caret line="9" column="10" lean-forward="false" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="60" column="26" lean-forward="true" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#835#836#0" expanded="true" />
-            <element signature="e#862#863#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -649,38 +611,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/LimiterService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/config/limiter.redis.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+        <state relative-caret-position="270">
+          <caret line="20" column="21" lean-forward="false" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/RedisPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="59" column="19" lean-forward="false" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#835#836#0" expanded="true" />
+            <element signature="e#862#863#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/backend/LimiterRedisBackend.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="59" column="5" lean-forward="false" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wang502/limiter/SlidingWindowLog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="104" column="5" lean-forward="true" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
+        <state relative-caret-position="143">
+          <caret line="46" column="53" lean-forward="false" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1772#1773#0" expanded="true" />
-            <element signature="e#1804#1805#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
           </folding>
         </state>
       </provider>
